@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buyer Login</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{ background: var(--bg); }
+    .wrap{ max-width: 520px; margin: 80px auto; padding: 0 16px; }
+    .panel{ background: var(--card); border:1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; }
+    .row{ display:flex; flex-direction:column; gap:6px; margin: 10px 0; }
+    input{ padding:10px 12px; border:1px solid var(--line); border-radius:12px; }
+    .hint{ color: var(--muted); font-size:14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <h1 style="margin:0 0 8px;">Login</h1>
+      <p class="hint">Use the email you received your setup link on.</p>
+
+      <form id="loginForm" autocomplete="on">
+        <div class="row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@email.com" required />
+        </div>
+
+        <div class="row">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="••••••••" required />
+        </div>
+
+        <button class="btn" id="loginBtn" type="submit">Login</button>
+        <div class="hint" id="status" style="margin-top:10px;"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- IMPORTANT: must match how Express serves static files -->
+  <script src="/Capstone/login.js" defer></script>
+</body>
+</html>

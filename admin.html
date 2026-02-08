@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin • Buyer Setup</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { background: var(--bg); }
+    .admin-wrap { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
+    .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px; }
+    .hint { color: var(--muted); font-size: 14px; }
+    .row { display:flex; flex-direction:column; gap:6px; }
+    .row label { font-size:14px; color: var(--muted); }
+    .row input, .row textarea, .row select {
+      padding:10px 12px; border:1px solid var(--line); border-radius:12px;
+      font: inherit;
+    }
+    .row textarea { min-height: 90px; resize: vertical; }
+    .toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:end; }
+    .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 900px){ .grid2 { grid-template-columns: 1fr; } }
+    .divider { border:none; border-top:1px solid var(--line); margin: 14px 0; }
+    .admin-home { padding: 10px 0; }
+  </style>
+</head>
+
+<body>
+  <div class="admin-wrap">
+    <h1 style="margin:0 0 6px;">Admin Dashboard</h1>
+    <p class="hint" style="margin-top:0;">
+      Set Buyer Basics, assign homes, and manage Dream Checklist amenities.
+    </p>
+
+    <!-- STATUS -->
+    <div class="panel" style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+      <div>
+        <div style="font-weight:700;">Status</div>
+        <div class="hint" id="adminStatus">Admin ready.</div>
+      </div>
+      <div class="hint">
+        Tip: Use <code>?report=john-doe.json</code> to auto-load the same buyer file.
+      </div>
+    </div>
+
+    <!-- REPORT FILE / CONTROLS -->
+    <section class="panel" style="margin-top:16px;">
+  <h2 style="margin-top:0;">Buyer Basics (Admin Entered)</h2>
+  <p class="hint">This information will appear on the buyer’s page. Save after edits.</p>
+
+  <div class="row">
+    <label for="selectedUser">Select buyer profile</label>
+    <select id="selectedUser">
+      <option value="">Select…</option>
+    </select>
+  </div>
+
+  <div class="grid2" style="margin-top:10px;">
+    <div class="row">
+      <label for="bb_name">Buyer full name</label>
+      <input id="bb_name" type="text" placeholder="John Doe" />
+    </div>
+
+    <div class="row">
+      <label for="bb_email">Buyer email</label>
+      <input id="bb_email" type="email" placeholder="john.doe@email.com" />
+    </div>
+
+    <div class="row">
+      <label for="bb_phone">Buyer phone</label>
+      <input id="bb_phone" type="tel" placeholder="(555) 555-5555" />
+    </div>
+
+    <div class="row">
+      <label for="bb_move_date">Target move date</label>
+      <input id="bb_move_date" type="date" />
+    </div>
+
+    <div class="row">
+      <label for="bb_preapproval">Pre-approval status</label>
+      <input id="bb_preapproval" type="text" placeholder="Pre-approved with XYZ Bank up to $300k" />
+    </div>
+
+    <div class="row">
+      <label for="bb_budget">Budget range</label>
+      <input id="bb_budget" type="text" placeholder="$250k–$325k" />
+    </div>
+
+    <div class="row">
+      <label for="bb_areas">Preferred areas / neighborhoods</label>
+      <input id="bb_areas" type="text" placeholder="Reynoldsburg, Pickerington, Gahanna…" />
+    </div>
+
+    <div class="row" style="grid-column: 1 / -1;">
+      <label for="bb_dealbreakers">Dealbreakers</label>
+      <textarea id="bb_dealbreakers" placeholder="Busy roads, no garage, HOA, fixer-upper…"></textarea>
+    </div>
+  </div>
+
+  <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; align-items:center;">
+    <button class="btn" id="saveBuyerBasicsBtn" type="button" disabled>Save Buyer Basics</button>
+    <span class="hint" id="buyerBasicsStatus"></span>
+  </div>
+</section>
+
+
+      <section class="panel" style="margin-top:16px;">
+  <h2 style="margin-top:0;">User Profiles</h2>
+  <p class="hint">Create buyer accounts and email setup/reset links.</p>
+
+  <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end;">
+    <div class="row" style="min-width:240px; flex:1;">
+      <label for="newUserName">Buyer full name</label>
+      <input id="newUserName" type="text" placeholder="John Doe" />
+    </div>
+
+    <div class="row" style="min-width:260px; flex:1;">
+      <label for="newUserEmail">Buyer email</label>
+      <input id="newUserEmail" type="email" placeholder="john@email.com" />
+    </div>
+
+    <button class="btn" id="createUserBtn" type="button">Create + Send Setup Link</button>
+  </div>
+
+  <div style="display:flex; gap:10px; margin-top:12px; align-items:center;">
+    <button class="btn ghost" id="refreshUsersBtn" type="button">Refresh</button>
+    <span class="hint" id="usersStatus"></span>
+  </div>
+
+  <div id="usersList" style="margin-top:12px;"></div>
+</section>
+
+    </section>
+
+    <!-- BUYER BASICS -->
+   
+
+    <!-- HOMES PANEL -->
+    <section class="panel" style="margin-top:16px;">
+      <h2 style="margin-top:0;">Assign Homes to Buyer</h2>
+      <p class="hint">
+        Homes saved here will load in the buyer UI for this report.
+      </p>
+
+      <div class="toolbar" style="margin: 10px 0 14px;">
+        <button class="btn ghost" id="loadHomesBtn" type="button">Load Homes</button>
+        <button class="btn" id="saveHomesBtn" type="button">Save Homes</button>
+        <button class="btn ghost" id="addHomeBtn" type="button">Add Home</button>
+      </div>
+
+      <hr class="divider" />
+      <div id="homesAdminList"></div>
+      <p class="hint" style="margin-top:10px;">
+        Photo field should be a path or URL (example: <code>/Capstone/images/listing1.jpg</code>).
+      </p>
+    </section>
+
+    <!-- AMENITIES PANEL -->
+    <section class="panel" style="margin-top:16px;">
+      <h2 style="margin-top:0;">Dream Checklist Amenities</h2>
+      <p class="hint">
+        These are the default checklist items that appear in the buyer page.
+      </p>
+
+      <div class="toolbar" style="margin: 10px 0 14px;">
+        <div class="row" style="min-width:320px; flex:1;">
+          <label for="amenityInput">Add amenity</label>
+          <input id="amenityInput" type="text" placeholder="e.g., Finished basement" />
+        </div>
+
+        <button class="btn ghost" id="addAmenityBtn" type="button">Add</button>
+        <button class="btn ghost" id="loadAmenitiesBtn" type="button">Load Amenities</button>
+        <button class="btn" id="saveAmenitiesBtn" type="button">Save Amenities</button>
+      </div>
+
+      <hr class="divider" />
+      <div id="amenitiesAdminList"></div>
+    </section>
+
+  </div>
+
+  <!-- admin.js after HTML -->
+  <script src="/Capstone/admin.js" defer></script>
+</body>
+</html>

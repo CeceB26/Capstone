@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "user_id": "4140395cf2f0f2caa066d015ee020809",
+      "name": "Courtney Wilkins",
+      "email": "thewilkins2022@gmail.com",
+      "active": true,
+      "locked": false,
+      "failed_attempts": 0,
+      "must_set_password": false,
+      "password_hash": "$2b$12$flUFV3UlQaHuk9n2q1fkkuPaJN9NnvVSqudqWF0zcGv9HlrqsSpjy",
+      "created_at": "2026-02-08T00:51:24.856Z",
+      "updated_at": "2026-02-08T02:34:04.989Z"
+    },
+    {
+      "user_id": "83a26b9cbb3db8fe326600caeb93aea7",
+      "name": "test",
+      "email": "cestwailabeck@yahoo.com",
+      "active": false,
+      "locked": true,
+      "failed_attempts": 3,
+      "must_set_password": false,
+      "password_hash": "$2b$12$2VVNRYR3epx7oRGeAczKee4WHS9.9QqiOSEb1Piq9GfAIr3.C90eS",
+      "created_at": "2026-02-08T00:53:00.894Z",
+      "updated_at": "2026-02-08T02:09:52.572Z"
+    },
+    {
+      "user_id": "fa2e9e5954fa99106ab521960d1adbd3",
+      "name": "Jasmine Nelson",
+      "email": "nelsonjasmine66@yahoo.com",
+      "active": true,
+      "locked": false,
+      "failed_attempts": 0,
+      "must_set_password": true,
+      "password_hash": null,
+      "created_at": "2026-02-08T02:21:53.726Z",
+      "updated_at": "2026-02-08T02:21:53.726Z"
+    }
+  ]
+}

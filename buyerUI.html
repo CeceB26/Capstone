@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buyer Home Preferences & Home Ratings</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header>
+    <div class="hero">
+      <div class="brand">
+        <img id="logoImg" src="/Capstone/images/CE CE The Realtor - Full Color Logo - Stacked (1).jpg" alt="Agent logo" />
+        <div class="agent">
+          <img id="headshotImg" class="headshot" src="/Capstone/images/Headshot.webp" alt="Agent headshot" />
+          <div>
+            <h1 id="agentName">Cece Beck</h1>
+            <p id="agentLine">Coldwell Banker Realty • Your Real Estate Partner</p>
+            <p class="hint" id="agentContact">Phone: (614) ___-_____ • Email: _____________________</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="welcome">
+        <div class="pill">Buyer Workbook • Quick + easy feedback</div>
+        <div class="name" id="welcomeName">Welcome!</div>
+        <p class="hint" id="sessionHint"></p>
+        <div class="sub" id="welcomeSub">Use this page to tell me what you want—and what you don’t.</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Buyer Basics -->
+    <section class="card">
+      <h2>Buyer Basics</h2>
+      <p class="hint">This helps me search smarter and avoid wasting your time.</p>
+
+      <div class="grid2" style="margin-top:10px;">
+        <div class="row">
+          <label>Buyer full name</label>
+          <span id="buyerFullName">JOHN DOE</span>
+        </div>
+
+        <div class="row inline">
+          <div class="row">
+            <label>Buyer email</label>
+            <span id="buyerEmail">john.doe@email.com</span>
+          </div>
+          <div class="row">
+            <label>Buyer phone</label>
+            <span id="buyerPhone">(555) 555-5555</span>
+          </div>
+        </div>
+
+        <div class="row inline">
+          <div class="row">
+            <label>Target move date</label>
+            <span id="targetMoveDate">01/01/2025</span>
+          </div>
+          <div class="row">
+            <label>Pre-approval status</label>
+            <span id="preapproval">Pre-approved with XYZ Bank for up to $300k</span>
+          </div>
+        </div>
+
+        <div class="row inline">
+          <div class="row">
+            <label>Budget range</label>
+            <span id="budgetRange">$250k–$325k</span>
+          </div>
+          <div class="row">
+            <label>Preferred areas / neighborhoods</label>
+            <span id="areas">Reynoldsburg, Pickerington, Gahanna…</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Dealbreakers</label>
+          <span id="dealbreakers">Examples: busy roads, no garage, HOA…</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dream Home Checklist -->
+    <details class="card1" open>
+      <summary>
+        <h2>Dream Home Checklist</h2>
+        <p>Let me know what is most important to you in a home.</p>
+      </summary>
+
+      <p class="hint">For each amenity, pick exactly one.</p>
+
+      <div class="amenities-toolbar">
+        <input id="customAmenity" type="text" placeholder="Add a custom amenity… (e.g., basement gym)" style="max-width:360px;" />
+        <button class="btn" id="addAmenityBtn" type="button">Add Amenity</button>
+        <button class="btn ghost" id="resetAmenitiesBtn" type="button">Reset checklist</button>
+      </div>
+
+      <div class="amenities" aria-label="Amenities checklist">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:34%;">Amenity</th>
+              <th>Non-negotiable</th>
+              <th>Nice to have</th>
+              <th>Not needed</th>
+              <th style="width:18%;">Notes</th>
+            </tr>
+          </thead>
+          <tbody id="amenitiesBody"></tbody>
+        </table>
+      </div>
+    </details>
+
+    <!-- Homes (from Admin) -->
+    <section class="card2">
+      <h2>Homes You Viewed (Rate + Notes)</h2>
+      <p class="hint">These homes are provided by your agent. Rate and add notes, then save.</p>
+
+      <!-- Removed Add Home + Sample buttons since Admin controls the list -->
+      <div class="prop-list" id="propList"></div>
+    </section>
+
+    <!-- Save -->
+    <section class="card3">
+      <h2>Save Your Preferences</h2>
+      <p class="hint">Please save before closing or logging out.</p>
+
+      <div class="footer-actions">
+        <button class="btn" id="saveBtn" type="button">Save Changes</button>
+        <span class="hint" id="saveStatus"></span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ONLY external JS -->
+  <script src="/Capstone/buyers.js" defer></script>
+</body>
+</html>
