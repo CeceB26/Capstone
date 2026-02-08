@@ -257,8 +257,9 @@ function requireAdmin(req, res, next) {
 app.get("/api/health", (req, res) => {
   res.json({ ok: true, time: nowIso(), port: PORT });
 });
+// Root -> redirect to login page
 app.get("/", (req, res) => {
-  res.send("Server is running ✅");
+  res.redirect("/Capstone/login.html");
 });
 
 
